@@ -1,15 +1,20 @@
 const input = document.getElementById("commandInput");
 const output = document.getElementById("output");
 
+const avatar = document.getElementById("profileAvatar");
+const meta = document.getElementById("profileMeta");
+
 let currentSection = "main";
+let revealed = false;
 
 /* =======================
    INPUT HANDLER
 ======================= */
 
-input.addEventListener("keydown", function (e) {
+input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     const cmd = input.value.trim().toLowerCase();
+    if (!cmd) return;
     runCommand(cmd);
     input.value = "";
   }
@@ -21,31 +26,63 @@ input.addEventListener("keydown", function (e) {
 
 function runCommand(cmd) {
   // Echo command
-  output.innerHTML += `
-    <div class="line command">➜ ${cmd}</div>
-  `;
+  output.innerHTML += `<div class="line command">➜ ${cmd}</div>`;
 
   // CLEAR (soft reset)
   if (cmd === "clear") {
-    output.innerHTML = `
-      <div class="line">Welcome to Sujay M Mundaragi's Portfolio →</div>
-      <div class="line hint">
-        Type <span>start</span> and press Enter to know more about me
-      </div>
-    `;
-    currentSection = "main";
+    resetIntro();
     return;
   }
 
   // START / BACK
   if (cmd === "start" || cmd === "back") {
-    currentSection = "main";
-    showMainMenu();
+    handleStart();
     return;
   }
 
   // MAIN COMMANDS
   handleMain(cmd);
+}
+
+/* =======================
+   START HANDLER (MAGIC)
+======================= */
+
+function handleStart() {
+  currentSection = "main";
+
+  // Run reveal animation only once
+  if (!revealed && avatar && meta) {
+    revealed = true;
+
+    avatar.classList.add("flip");
+
+    // Swap image mid-flip
+    setTimeout(() => {
+      avatar.src = "profile.jpg";
+    }, 400);
+
+    // Show meta after flip
+    setTimeout(() => {
+      meta.classList.add("show");
+    }, 700);
+  }
+
+  showMainMenu();
+}
+
+/* =======================
+   INTRO RESET
+======================= */
+
+function resetIntro() {
+  output.innerHTML = `
+    <div class="line">Welcome to Sujay M Mundaragi's Portfolio →</div>
+    <div class="line hint">
+      Type <span>start</span> and press Enter to know more about me
+    </div>
+  `;
+  currentSection = "main";
 }
 
 /* =======================
@@ -70,7 +107,7 @@ function handleMain(cmd) {
       print(`
 Sujay M Mundaragi
 MCA Student | Full Stack Developer
-
+<br>
 Passionate about building scalable web applications
 and clean, user-friendly interfaces.
 `);
@@ -131,7 +168,6 @@ Live: https://cinelockz.netlify.app/
 Source: https://github.com/sujay-707/CineLockz
 
 <br>
-
 3. Simon Game
 JavaScript Memory Game
 Live: https://simon-game-sujay.netlify.app/
@@ -177,8 +213,7 @@ Click the link below to open my resume in a new tab
             href="https://drive.google.com/file/d/1OsmKnPUfkpJ4zTppR2eHMKez4kpXl8l6/view"
             target="_blank"
             class="link"
-          >
-            → Open Resume (Google Drive)
+          > → Open Resume (Google Drive)
           </a>
         </div>
       `;
@@ -215,13 +250,9 @@ function print(text) {
       );
 
       if (line.endsWith(":")) {
-        output.innerHTML += `
-          <div class="line section-title">${formattedLine}</div>
-        `;
+        output.innerHTML += `<div class="line section-title">${formattedLine}</div>`;
       } else {
-        output.innerHTML += `
-          <div class="line block">${formattedLine}</div>
-        `;
+        output.innerHTML += `<div class="line block">${formattedLine}</div>`;
       }
     });
 
