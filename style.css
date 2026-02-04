@@ -245,7 +245,6 @@ input {
 /* =======================
    RESPONSIVE (MOBILE)
 ======================= */
-
 @media (max-width: 768px) {
 
   body {
@@ -263,23 +262,27 @@ input {
     height: calc(100vh - 160px);
   }
 
-  /* Hide avatar on mobile (clean UX) */
+  /* Avatar comes to TOP */
   .terminal-side {
-    display: none;
+    order: -1;              /* 🔥 KEY LINE */
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .avatar {
+    width: 120px;
+    height: 120px;
+  }
+
+  .profile-title {
+    font-size: 14px;
+  }
+
+  .profile-subtitle {
+    font-size: 11px;
   }
 
   .line {
     font-size: 13.5px;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .title {
-    display: none;
-  }
-
-  input {
-    font-size: 14px;
   }
 }
