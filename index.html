@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sujay | Terminal Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="terminal">
+
+    <!-- =======================
+         TERMINAL HEADER
+    ======================== -->
+    <div class="terminal-header">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span class="title">sujay@portfolio — terminal</span>
+    </div>
+
+    <!-- =======================
+         TERMINAL BODY (SPLIT)
+    ======================== -->
+    <div class="terminal-body">
+
+      <!-- LEFT: TERMINAL OUTPUT -->
+      <div class="terminal-output" id="output">
+        <div class="line">
+          Welcome to Sujay M Mundaragi's Portfolio →
+        </div>
+        <div class="line hint">
+          Type <span>start</span> and press Enter to know more about me
+        </div>
+      </div>
+
+      <!-- RIGHT: PROFILE SECTION -->
+      <div class="terminal-side">
+        <img
+          src="profile.jpg"
+          alt="SuJay M Mundaragi"
+        />
+
+        <div class="profile-name">
+          SuJay M Mundaragi
+          
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =======================
+         TERMINAL INPUT
+    ======================== -->
+    <div class="terminal-input">
+      <span class="prompt">➜</span>
+      <input
+        type="text"
+        id="commandInput"
+        autofocus
+        autocomplete="off"
+      />
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
