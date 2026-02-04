@@ -213,7 +213,7 @@ Click the link below to open my resume in a new tab
             href="https://drive.google.com/file/d/1OsmKnPUfkpJ4zTppR2eHMKez4kpXl8l6/view"
             target="_blank"
             class="link"
-          > → Open Resume (Google Drive)
+          > → Open Resume
           </a>
         </div>
       `;
